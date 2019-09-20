@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--客户映射 指定到dao接口 -->
+<mapper namespace="cn.fishmaple.psMonitor.mapper.BaiduMapper">
+    <select id="insertOne" parameterType="cn.fishmaple.psMonitor.mapper.object.WebCrawler">
+        insert into webCrawler (id,timeline,json,origin) values (#{id},#{timeline},#{json},2)
+    </select>
+</mapper>
