@@ -15,7 +15,7 @@
 2. （可选）使用一个或多个@TagMatched 定义标签过滤规则，其中的字段
    - priority：int 保留字段，目前没有启用
    - matchValue：要匹配的正则表达式
-   - attr：boolean 标签是否匹配属性，true则表示正则匹配的是属性，false是取标签的text
+   - attr：String 标签匹配属性，默认是取标签的text
    - blacklist：boolean 黑白名单，true则表示匹配黑名单，符合正则的标签跳过，false则是只取符合正则的标签  
  @TagMatched的跳过策略与@HtmlDataField保持一致
 3. 获取到想要解析的html片段，推荐使用restTemplate：
@@ -28,11 +28,12 @@
        List<BaiduTopHotSearch> list= WebCrawlerUtil.TransFormByParser(hotTopic, BaiduTopHotSearch.class,"rank");
     ```
     
- ###示例   
-例如：爬取符合表达式的前10条百度搜索热点数据，定义爬取对象：
+ ### 示例   
+例如：爬取符合表达式的前10条含有“神仙”的百度搜索热点数据，定义爬取对象：
 ```java
 public class BaiduTopHotSearch {
     @HtmlDataField(selector = ".keyword .list-title",ridPrefix = 0,goalCount= 10)
+    @TagMatched(matchValue=".*神仙.*",attr="title")
     private String subject;
     @HtmlDataField(selector = ".last .icon-rise,.last .icon-fall")
     private String count;
